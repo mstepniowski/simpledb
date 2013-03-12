@@ -15,8 +15,8 @@ def search(dbfile, prefix):
             print 'No completions'
             return
         else:
-            print letter, idx.nodes[letter]
             idx = Index.from_file(dbfile, idx.nodes[letter])
+
     if idx.nodes:
         print 'Completions:'
         for completion in idx.nodes:

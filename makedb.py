@@ -30,7 +30,7 @@ class T(object):
 
     def size_bytes(self):
         if self._size_bytes is None:
-            self._size_bytes = self.index_bytes() + sum(self.nodes[letter].size_bytes() for letter in sorted(self.nodes))
+            self._size_bytes = self.index_bytes() + sum(t.size_bytes() for t in self.nodes.values())
         return self._size_bytes
 
     def index(self, offset=0):
@@ -55,7 +55,7 @@ class T(object):
         for letter in sorted(self.nodes):
             t = self.nodes[letter]
             t.write_to_file(f, offset)
-            offset += t.index_bytes()
+            offset += t.size_bytes()
 
 
 def makedb(directory, f):
